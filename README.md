@@ -1,103 +1,84 @@
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
-Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
+## What is this?
 
-## Table of Contents
+Since it was launched, I've loved Heroku's GitHub-integrated [Review Apps](https://devcenter.heroku.com/articles/github-integration-review-apps). As part of your branch build, Heroku will spin up a new instance of your application, which you can then access with a direct link from your GitHub pull request. [Netlify](https://www.netlify.com/) offers the same functionality for deploying static frontend sites.
 
-* [Updating to New Releases](#updating-to-new-releases)
-* [Available Scripts](#available-scripts)
-  * [npm start](#npm-start)
-  * [npm test](#npm-test)
-  * [npm run ios](#npm-run-ios)
-  * [npm run android](#npm-run-android)
-  * [npm run eject](#npm-run-eject)
-* [Writing and Running Tests](#writing-and-running-tests)
-* [Customizing App Display Name and Icon](#customizing-app-display-name-and-icon)
-* [Sharing and Deployment](#sharing-and-deployment)
-  * [Publishing to Expo's React Native Community](#publishing-to-expos-react-native-community)
-  * [Building an Expo "standalone" app](#building-an-expo-standalone-app)
-  * [Ejecting from Create React Native App](#ejecting-from-create-react-native-app)
-    * [Build Dependencies (Xcode & Android Studio)](#build-dependencies-xcode-android-studio)
-    * [Should I Use ExpoKit?](#should-i-use-expokit)
-* [Tips and Tricks](#tips-and-tricks)
+In my team's workflow, every pull request is reviewed and tested by another team member before landing to the master branch. Reviewing code on GitHub is simple enough: For most well-crafted pull requests, you can review the code diff in your browser, and either approve the changes, or request further improvements.
 
-## Updating to New Releases
+Testing another developer's changes isn't quite as simple. Typically, you will have to stash any work in progress in your own workspace, pull down the remote branch, install dependencies, compile and start the application before you can verify that the changes work as intended.
 
-You should only need to update the global installation of `create-react-native-app` very rarely, ideally never.
+With Heroku and Netlify, you don't need to leave the comfort of your browser. You can simply click a link in your Pull Request. Unfortunately, there isn't a one-click solution like this for mobile development.
 
-Updating the `react-native-scripts` dependency of your app should be as simple as bumping the version number in `package.json` and reinstalling your project's dependencies.
+Inspired by [Expo Sketch](https://sketch.expo.io/), I wanted to see if it would be possible to set up review apps for React Native.
 
-Upgrading to a new version of React Native requires updating the `react-native`, `react`, and `expo` package versions, and setting the correct `sdkVersion` in `app.json`. See the [versioning guide](https://github.com/react-community/create-react-native-app/blob/master/VERSIONS.md) for up-to-date information about package version compatibility.
+## Pull request review apps for React Native
 
-## Available Scripts
+This repository contains a proof of concept for GitHub-integrated React Native review apps. It works with ([unejected](https://github.com/react-community/create-react-native-app/blob/master/EJECTING.md)) [create-react-native-app](https://github.com/react-community/create-react-native-app) and [Expo](https://expo.io/) applications, using a hosted [Travis CI](https://travis-ci.org/).
 
-If Yarn was installed when the project was initialized, then dependencies will have been installed via Yarn, and you should probably use it to run these commands as well. Unlike dependency installation, command running syntax is identical for Yarn and NPM at the time of this writing.
+The basic mechanism is:
+1. Trigger a Pull Request build on [Travis CI](https://travis-ci.org/).
+2. Run your standard health checks (tests, linters, type checkers).
+3. Build and publish the app under a unique name on [Expo](https://expo.io/) using the [exp](https://docs.expo.io/versions/v15.0.0/guides/exp-cli.html) cli.
+4. Generate a QR code or the published app URL, and use the GitHub API to post the QR code to Pull Request comments.
+5. Scan the QR code with your Expo app.
 
-### `npm start`
+## Detailed setup
 
-Runs your app in development mode.
+To make this flow work, we need to add a few things to our application. Here, we start with an app generated from the standard create-react-native-app template.
 
-Open it in the [Expo app](https://expo.io) on your phone to view it. It will reload if you save edits to your files, and you will see build errors and logs in the terminal.
+#### travis.yml
 
-#### `npm test`
-
-Runs the [jest](https://github.com/facebook/jest) test runner on your tests.
-
-#### `npm run ios`
-
-Like `npm start`, but also attempts to open your app in the iOS Simulator if you're on a Mac and have it installed.
-
-#### `npm run android`
-
-Like `npm start`, but also attempts to open your app on a connected Android device or emulator. Requires an installation of Android build tools (see [React Native docs](https://facebook.github.io/react-native/docs/getting-started.html) for detailed setup).
-
-#### `npm run eject`
-
-This will start the process of "ejecting" from Create React Native App's build scripts. You'll be asked a couple of questions about how you'd like to build your project.
-
-**Warning:** Running eject is a permanent action (aside from whatever version control system you use). An ejected app will require you to have an [Xcode and/or Android Studio environment](https://facebook.github.io/react-native/docs/getting-started.html) set up.
-
-## Customizing App Display Name and Icon
-
-You can edit `app.json` to include [configuration keys](https://docs.expo.io/versions/latest/guides/configuration.html) under the `expo` key.
-
-To change your app's display name, set the `expo.name` key in `app.json` to an appropriate string.
-
-To set an app icon, set the `expo.icon` key in `app.json` to be either a local path or a URL. It's recommended that you use a 512x512 png file with transparency.
-
-## Writing and Running Tests
-
-This project is set up to use [jest](https://facebook.github.io/jest/) for tests. You can configure whatever testing strategy you like, but jest works out of the box. Create test files in directories called `__tests__` to have the files loaded by jest. See the [the template project](https://github.com/react-community/create-react-native-app/tree/master/react-native-scripts/template/__tests__) for an example test. The [jest documentation](https://facebook.github.io/jest/docs/getting-started.html) is also a wonderful resource, as is the [React Native testing tutorial](https://facebook.github.io/jest/docs/tutorial-react-native.html).
-
-## Sharing and Deployment
-
-Create React Native App does a lot of work to make app setup and development simple and straightforward, but it's very difficult to do the same for deploying to Apple's App Store or Google's Play Store without relying on a hosted service.
-
-### Publishing to Expo's React Native Community
-
-Expo provides free hosting for the JS-only apps created by CRNA, allowing you to share your app through the Expo client app. This requires registration for an Expo account.
-
-Install the `exp` command-line tool, and run the publish command:
+Add (or modify your existing) [travis.yml](travis.yml) to include the following lines:
 
 ```
-$ npm i -g exp
-$ exp publish
+cache: yarn
+script:
+  - yarn ci:test
+  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then yarn ci:deploy; fi'
 ```
 
-### Building an Expo "standalone" app
+This ensures that we are using [yarn](https://yarnpkg.com), and that our deployment scripts only run for Pull Request builds. The `ci:test` task ensures that we don't attempt to publish broken builds.
 
-You can also use a service like [Expo's standalone builds](https://docs.expo.io/versions/latest/guides/building-standalone-apps.html) if you want to get an IPA/APK for distribution without having to build the native code yourself.
+#### package.json
 
-### Ejecting from Create React Native App
+First, let's add a few packages to our `devDepedencies`. We will need these when publishing the app on Travis.
+```sh
+yarn add --dev exp request
+```
 
-If you want to build and deploy your app yourself, you'll need to eject from CRNA and use Xcode and Android Studio.
+We then add the following `ci:*` and `exp:*` prefixed scripts to the `scripts` section of our [package.json](package.json):
+```
+"ci:test": "node node_modules/jest/bin/jest.js --forceExit",
+"ci:deploy": "yarn ci:exp-login && yarn ci:exp-prepare && yarn ci:exp-publish && yarn ci:exp-comment-qr",
+"ci:exp-login": "exp login -u $EXP_USERNAME -p $EXP_PASSWORD",
+"ci:exp-prepare": "node ./deploy/prepare-deploy.js $TRAVIS_PULL_REQUEST_BRANCH",
+"ci:exp-publish": "exp publish",
+"ci:exp-comment-qr": "node ./deploy/pr-comment.js"
+```
 
-This is usually as simple as running `npm run eject` in your project, which will walk you through the process. Make sure to install `react-native-cli` and follow the [native code getting started guide for React Native](https://facebook.github.io/react-native/docs/getting-started.html).
+#### Deployment scripts
 
-#### Should I Use ExpoKit?
+I used Node.js scripting for some of the more complicated bits of the deployment process. These scripts live in the [deploy](deploy/) directory. Before build, they generate an unique name for the pull request source branch, and afterwards post the comment to GitHub.
 
-If you have made use of Expo APIs while working on your project, then those API calls will stop working if you eject to a regular React Native project. If you want to continue using those APIs, you can eject to "React Native + ExpoKit" which will still allow you to build your own native code and continue using the Expo APIs. See the [ejecting guide](https://github.com/react-community/create-react-native-app/blob/master/EJECTING.md) for more details about this option.
+As this is a proof of concept, the script code is... not great. The less said about them, the better :)
 
-## Tips and Tricks
+#### Enabling Travis
 
-* If you have a local network the prevents your phone from accessing the address that is printed when running the packager, you can often work around this issue by "tethering" your computer to your phone's internet connection. Some phones call this feature "mobile hotspot." While it's very convenient, if you have a data plan where you pay for data transfer you should be careful when using this feature, especially when installing dependencies from NPM.
+The final step is to enable [Travis CI](https://travis-ci.org/) on the repository using the Travis control panel. While there, you'll need to add a few secure environment variables to your build:
+ - `EXP_USERNAME` - Exponent username, under which to publish the review apps.
+ - `EXP_PASSWORD` - Exponent password for the publish user.
+ - `GITHUB_TOKEN` - A [Personal API Token](https://github.com/blog/1509-personal-api-tokens) of a user with access to the repository. If the repository is private, the token needs to be granted the full `repo` scope. For public repositories, the `public_repo` scope is enough.
+
+## Result
+
+You should now be able to create a new branch, make some changes, open a pull request, and if the stars are aligned, the Travis build should publish the app to Expo, and finish with [a comment list this one](https://github.com/jevakallio/crna-pull-request-preview/pull/2#issuecomment-287372812):
+
+---
+This branch has been deployed to exp://exp.host/@jevakallio/crna-pull-request-preview-feature-sample-change :rocket:
+
+Point your Expo app at
+![QR Code](https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=exp://exp.host/@jevakallio/crna-pull-request-preview-feature-sample-change)
+---
+
+That's it! If you follow the instructions, you should be able to test the updated app on your phone without leaving your browser.
