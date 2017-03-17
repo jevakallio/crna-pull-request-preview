@@ -6,6 +6,8 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Text>This app has been updated via a Pull Request</Text>
+        <Text>(AGAIN)</Text>
+
       </View>
     );
   }
