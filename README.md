@@ -70,15 +70,18 @@ The final step is to enable [Travis CI](https://travis-ci.org/) on the repositor
  - `EXP_PASSWORD` - Exponent password for the publish user.
  - `GITHUB_TOKEN` - A [Personal API Token](https://github.com/blog/1509-personal-api-tokens) of a user with access to the repository. If the repository is private, the token needs to be granted the full `repo` scope. For public repositories, the `public_repo` scope is enough.
 
-## Result
+#### Test it
 
 You should now be able to create a new branch, make some changes, open a pull request, and if the stars are aligned, the Travis build should publish the app to Expo, and finish with [a comment list this one](https://github.com/jevakallio/crna-pull-request-preview/pull/2#issuecomment-287372812):
 
 ---
+
 This branch has been deployed to exp://exp.host/@jevakallio/crna-pull-request-preview-feature-sample-change :rocket:
 
 Point your Expo app at
-![QR Code](https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=exp://exp.host/@jevakallio/crna-pull-request-preview-feature-sample-change)
----
 
-That's it! If you follow the instructions, you should be able to test the updated app on your phone without leaving your browser.
+![QR Code](https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=exp://exp.host/@jevakallio/crna-pull-request-preview-feature-sample-change)
+
+## Result
+
+That's it! If you follow the instructions, you should be able to test the updated Expo app on your phone without leaving your browser
