@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "appr": "0.1.0",
+    "appr": "0.1.1",
     "jest-expo": "^0.2.1",
     "react-native-scripts": "0.0.20",
     "react-test-renderer": "~15.4.0"
