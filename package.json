@@ -6,7 +6,8 @@
     "exp": "^36.0.0",
     "jest-expo": "^0.2.1",
     "react-native-scripts": "0.0.20",
-    "react-test-renderer": "~15.4.0"
+    "react-test-renderer": "~15.4.0",
+    "request": "^2.81.0"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -16,10 +17,11 @@
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
     "ci:test": "node node_modules/jest/bin/jest.js --forceExit",
-    "ci:deploy": "yarn ci:exp-login && yarn ci:exp-prepare && yarn ci:exp-publish",
+    "ci:deploy": "yarn ci:exp-login && yarn ci:exp-prepare && yarn ci:exp-publish && yarn ci:exp-comment-qr",
     "ci:exp-login": "exp login -u $EXP_USERNAME -p $EXP_PASSWORD",
-    "ci:exp-prepare": "node ./prepare-deploy.js $TRAVIS_PULL_REQUEST_BRANCH",
-    "ci:exp-publish": "exp publish"
+    "ci:exp-prepare": "node ./deploy/prepare-deploy.js $TRAVIS_PULL_REQUEST_BRANCH",
+    "ci:exp-publish": "exp publish",
+    "ci:exp-comment-qr": "node ./deploy/pr-comment.js"
   },
   "jest": {
     "preset": "jest-expo"
