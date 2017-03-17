@@ -1,5 +1,5 @@
 {
-  "name": "crna-pull-request-preview--testing--branch_name",
+  "name": "crna-pull-request-preview",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {

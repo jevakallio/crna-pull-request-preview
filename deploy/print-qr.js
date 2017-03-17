@@ -8,6 +8,4 @@ if (!process.env.TRAVIS_REPO_SLUG) {
 var org = slug.split('/')[0];
 var name = require('../package.json').name;
 var url = 'exp://exp.host/@' + org + '/' + name;
-qr.generate(url, function(qrCode) {
-  console.log(qrCode);
-});
+qr.generate(url);
