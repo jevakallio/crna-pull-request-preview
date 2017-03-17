@@ -34,15 +34,19 @@ This approach doesn't currently work with:
 
 To make this flow work, we need to add a few things to our application. Here, we start with an app generated from the standard create-react-native-app template.
 
-#### travis.yml
+#### .travis.yml
 
-Add (or modify your existing) [travis.yml](travis.yml) to include the following lines:
+Add (or modify your existing) [.travis.yml](.travis.yml) to include the following lines:
 
 ```
+language: node_js
+node_js:
+  - "7"
 cache: yarn
 script:
   - yarn ci:test
   - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then yarn ci:deploy; fi'
+
 ```
 
 This ensures that we are using [yarn](https://yarnpkg.com), and that our deployment scripts only run for Pull Request builds. The `ci:test` task ensures that we don't attempt to publish broken builds.
