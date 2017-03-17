@@ -4,14 +4,14 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "appr": "*",
+    "appr": "0.1.0",
     "jest-expo": "^0.2.1",
     "react-native-scripts": "0.0.20",
     "react-test-renderer": "~15.4.0"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "appr": "./node_modules/appr/index.js",
+    "appr": "appr",
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
