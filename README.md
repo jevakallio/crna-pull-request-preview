@@ -23,6 +23,13 @@ The basic mechanism is:
 4. Generate a QR code or the published app URL, and use the GitHub API to post the QR code to Pull Request comments.
 5. Scan the QR code with your Expo app.
 
+## Limitations
+
+This approach doesn't currently work with:
+1. React Native apps not started with create-react-native-app or Expo
+2. React Native apps containing custom native module dependencies
+3. Pull Requests from forked repositories. This is due to Travis security policies (wisely) not exposing secure environment variables to forked builds.
+
 ## Detailed setup
 
 To make this flow work, we need to add a few things to our application. Here, we start with an app generated from the standard create-react-native-app template.
@@ -84,4 +91,4 @@ Point your Expo app at
 
 ## Result
 
-That's it! If you follow the instructions, you should be able to test the updated Expo app on your phone without leaving your browser
+That's it! If you follow the instructions, you should be able to test the updated Expo app on your phone without leaving your browser.
