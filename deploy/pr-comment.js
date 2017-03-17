@@ -42,7 +42,7 @@ request.post(
     body: JSON.stringify({
       body: 'This branch has been deployed to ' +
         expUrl +
-        ' :rocket:\n\n Point your Expo app at ![QR Code](' +
+        ' :rocket:\n\nPoint your Expo app at\n![QR Code](' +
         qrUrl +
         ')'
     })
