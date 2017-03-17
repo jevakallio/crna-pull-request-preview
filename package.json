@@ -16,7 +16,6 @@
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
     "ci:test": "node node_modules/jest/bin/jest.js --forceExit",
-    "ci:deploy-pr": "if [ \"$TRAVIS_PULL_REQUEST\" != \"false\" ]; then yarn ci:deploy; fi",
     "ci:deploy": "yarn ci:exp-login && yarn ci:exp-prepare && yarn ci:exp-publish",
     "ci:exp-login": "exp login -u $EXP_USERNAME -p $EXP_PASSWORD",
     "ci:exp-prepare": "node ./prepare-deploy.js $TRAVIS_PULL_REQUEST_BRANCH",
