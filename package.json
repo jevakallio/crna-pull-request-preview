@@ -1,5 +1,5 @@
 {
-  "name": "crna-pull-request-preview",
+  "name": "crna-pull-request-preview--testing--branch_name",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -16,10 +16,11 @@
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
     "ci:test": "node node_modules/jest/bin/jest.js --forceExit",
-    "ci:deploy": "yarn ci:exp-login && yarn ci:exp-prepare && yarn ci:exp-publish",
+    "ci:deploy": "yarn ci:exp-login && yarn ci:exp-prepare && yarn ci:exp-print-qr",
     "ci:exp-login": "exp login -u $EXP_USERNAME -p $EXP_PASSWORD",
-    "ci:exp-prepare": "node ./prepare-deploy.js $TRAVIS_PULL_REQUEST_BRANCH",
-    "ci:exp-publish": "exp publish"
+    "ci:exp-prepare": "node ./deploy/prepare-deploy.js $TRAVIS_PULL_REQUEST_BRANCH",
+    "ci:exp-publish": "exp publish",
+    "ci:exp-print-qr": "node ./deploy/print-qr.js"
   },
   "jest": {
     "preset": "jest-expo"
