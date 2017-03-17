@@ -1,6 +1,7 @@
 {
   "name": "crna-pull-request-preview",
   "version": "0.1.0",
+  "license": "MIT",
   "private": true,
   "devDependencies": {
     "exp": "^36.0.0",
