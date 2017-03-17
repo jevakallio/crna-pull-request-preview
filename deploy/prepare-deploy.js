@@ -11,6 +11,13 @@ if (pkg.name.endsWith(sanitized)) {
 } else {
   fs.writeFileSync(
     './package.json',
-    JSON.stringify(Object.assign(pkg, { name: pkg.name + '-' + sanitized }), null, 2)
+    JSON.stringify(
+      Object.assign(pkg, {
+        name: pkg.name + '-' + sanitized,
+        privacy: 'unlisted'
+      }),
+      null,
+      2
+    )
   );
 }
