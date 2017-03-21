@@ -1,6 +1,6 @@
 # Testing pull requests with _appr_
 
-**TL;DR;** [appr](https://github.com/formidablelabs/appr) is a new tool that builds and deploys pull requests in your [create-react-native-app](https://github.com/react-community/create-react-native-app) and [Expo](https://expo.io/)-based projects, and posts a link and a QR code to your PR, so you can run the app on your device or emulator in seconds.
+**TL;DR;** [appr](https://github.com/formidablelabs/appr) is a new tool that builds and deploys pull requests in your [create-react-native-app](https://github.com/react-community/create-react-native-app) and [Expo](https://expo.io/)-based projects, and posts a link and a QR code to your PR, so you can run the app on your device or emulator in seconds!
 
 ![screenshot](pr.png)
 
@@ -10,7 +10,7 @@ I'm sure you'll agree: Code reviews are a useful tool in a development team's wo
 
 Thankfully, GitHub makes code reviews simple. As long as the team is disciplined enough to keep their pull requests small and focused, code keeps getting reviewed, improved, fixed and released. But as soon as reviewing become slow, the flow grinds to a halt.
 
-A good code review looks at code conventions, patterns, and architecture. But most importantly, good reviews verify that the code works as intended. For UI programming, the only way to do this try out the app. To get the other developer's code running on your device you will have to stash any work-in-progress in your own workspace, pull down the remote branch, install dependencies, compile, deploy and start the application. Not so quick, anymore, is it?
+A good code review looks at code conventions, patterns, and architecture. But most importantly, **good reviews verify that the code works as intended.** For UI programming, the only way to do this try out the app. To get another developer's code running on your device you will have to stash any work-in-progress in your own workspace, pull down the remote branch, install dependencies, compile, deploy and start the application. Not so quick, anymore, is it?
 
 ## Review apps
 
@@ -22,10 +22,12 @@ Inspired by [Expo Sketch](https://sketch.expo.io/), I wanted to see if it would 
 
 ## Introducing _appr_
 
-Appr is a script that deploys pull requests in your project to Exp, and posts a link and a QR code to your PR. *It works just like Sketch, but for your entire project.* Point your Expo app camera to the QR code, and the review app will launch on your device. Appr currently works with all unejected Expo apps, including apps created with [create-react-native-app](https://github.com/react-community/create-react-native-app).
+Appr is a script that deploys pull requests in your project to Expo, and posts a link and a QR code to your PR. **It works just like Sketch, but for your entire project.** Point your Expo app camera to the QR code, and the review app will launch on your device. Appr currently works with all unejected Expo apps, including apps created with [create-react-native-app](https://github.com/react-community/create-react-native-app).
 
 The default build environment is [Travis](https://travis-ci.org/), a popular continuous integration service that is free for open source projects, and offers paid plans for private repositories. Switching to your preferred CI should be easy, and PRs to add support are welcome!
 
 To make testing your pull requests easy, head on to [FormidableLabs/appr](https://github.com/FormidableLabs/appr) on GitHub and follow the simple [Getting started](https://github.com/FormidableLabs/appr#getting-started) guide to add appr to your project!
+
+## About the author
 
 _Jani builds React Native apps at [Formidable](https://formidable.com), a Seattle/London-based consultancy and open-source shop. You can follow him on Twitter as [@jevakallio](https://twitter.com/jevakallio)._
