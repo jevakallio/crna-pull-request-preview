@@ -1,4 +1,4 @@
-# Testing pull requests with _appr_
+# Review apps for Create React Native App and Expo
 
 ## TL;DR;
 
@@ -16,7 +16,7 @@ A good code review looks at code conventions, patterns, and architecture. But mo
 
 ## Review apps
 
-I've loved [Heroku](https://www.heroku.com/)'s GitHub-integrated [Review Apps](https://devcenter.heroku.com/articles/github-integration-review-app) since they were launched. As part of your branch build, Heroku will spin up a new instance of your web application, which you can then access with a direct link from your GitHub pull request. [Netlify](https://www.netlify.com/) offers the same functionality for deploying static front end sites.
+I've loved [Heroku](https://www.heroku.com/)'s GitHub-integrated [Review Apps](https://devcenter.heroku.com/articles/github-integration-review-apps) since they were launched. As part of your branch build, Heroku will spin up a new instance of your web application, which you can then access with a direct link from your GitHub pull request. [Netlify](https://www.netlify.com/) offers the same functionality for deploying static front end sites.
 
 Sadly, this one-click workflow hasn't been available to mobile developers without setting up complex build and deployment pipelines, and even then, installing an app to be able to test a simple change still takes way too long.
 
