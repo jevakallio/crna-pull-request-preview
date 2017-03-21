@@ -2,7 +2,7 @@
 
 ## TL;DR;
 
-[appr](https://github.com/formidablelabs/appr) is a new tool that builds and deploys pull requests in your [create-react-native-app](https://github.com/react-community/create-react-native-app) and [Expo](https://expo.io/)-based projects, and posts a link and a QR code to your PR, so you can run the app on your device or emulator in seconds!
+Made by [Formidable](https://formidable.com), [appr](https://github.com/formidablelabs/appr) builds and deploys pull requests in your [create-react-native-app](https://github.com/react-community/create-react-native-app) and [Expo](https://expo.io/)-based projects, and posts a link and a QR code to your PR, so you can run the app on your device or emulator in seconds!
 
 ![screenshot](pr.png)
 
