@@ -5,9 +5,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>This app has been updated via a Pull Request</Text>
-        <Text>(AGAIN)</Text>
-
+        <Text>This app has been updated via Circle CI!</Text>
       </View>
     );
   }

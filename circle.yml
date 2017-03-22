@@ -1,0 +1,15 @@
+dependencies:
+  override:
+    - yarn
+machine:
+  node:
+    version: 6.9
+general:
+  branches:
+    only:
+      - master
+deployment:
+  appr:
+    commands:
+      - 'sh ./debug-circle.sh'
+      - 'if [ "$CI_PULL_REQUEST" != "" ]; then yarn appr; fi'

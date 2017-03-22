@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "appr": "github:formidablelabs/appr#402a30d9273a9dea390d57ca3ecb3ea7b1201f1b",
+    "appr": "github:formidablelabs/appr#1c772808913231ebff5babe02e41f1c0737e01a5",
     "jest-expo": "^0.2.1",
     "react-native-scripts": "0.0.20",
     "react-test-renderer": "~15.4.0"
