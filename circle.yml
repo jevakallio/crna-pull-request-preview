@@ -4,10 +4,6 @@ dependencies:
 machine:
   node:
     version: 6.9
-general:
-  branches:
-    only:
-      - master
 deployment:
   appr:
     commands:
