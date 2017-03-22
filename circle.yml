@@ -6,6 +6,7 @@ machine:
     version: 6.9
 deployment:
   appr:
+    branch: /.*/
     commands:
       - 'sh ./debug-circle.sh'
       - 'if [ "$CI_PULL_REQUEST" != "" ]; then yarn appr; fi'
