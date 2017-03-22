@@ -6,7 +6,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Text>This app has been updated via Circle CI!</Text>
-        <Text>Again again again!</Text>
+        <Text>Again again again again!</Text>
       </View>
     );
   }
