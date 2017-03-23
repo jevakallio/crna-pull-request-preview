@@ -1,10 +1,8 @@
-# Introducing appr: A New Review Tool for Mobile Developers
+# Introducing appr: A New Review Workflow for Mobile Developers
 
-## TL;DR;
+[Appr](https://github.com/formidablelabs/appr) builds pull requests in your [Create React Native App](https://github.com/react-community/create-react-native-app) project, deploys the changes to [Expo](https://expo.io/), and posts a link and a QR code to your PR, so you can run the app on your device or emulator in seconds!
 
-[appr](https://github.com/formidablelabs/appr) builds and deploys pull requests in your [create-react-native-app](https://github.com/react-community/create-react-native-app) and [Expo](https://expo.io/)-based projects, and posts a link and a QR code to your PR, so you can run the app on your device or emulator in seconds!
-
-![screenshot](pr.png)
+![screenshot](https://github.com/FormidableLabs/appr/raw/master/docs/demo.gif)
 
 ## Great teams review their code
 
@@ -22,33 +20,31 @@ Sadly, this one-click workflow hasn't been available to mobile developers withou
 
 Inspired by [Expo Sketch](https://sketch.expo.io/), I wanted to see if it would be possible to set up review apps for React Native.
 
-## Introducing _appr_
+## Introducing Appr
 
 Appr is a script that deploys pull requests in your project to Expo, and posts a link and a QR code to your PR. **It works just like Sketch, but for your entire project.** Point your Expo app camera to the QR code and the review app will launch on your device. Appr currently works with all unejected Expo apps, including apps created with [create-react-native-app](https://github.com/react-community/create-react-native-app).
 
-The default build environment is [Travis](https://travis-ci.org/), a popular continuous integration service that is free for open source projects, and offers paid plans for private repositories. Switching to your preferred CI should be easy, and PRs to add support are welcome!
+Appr works on [Travis](https://travis-ci.org/) and [Circle CI](https://circleci.com/) out of the box, and supports any CI environment that can trigger builds from GitHub pull requests.
 
 ## How it works
 
 The basic mechanism is:
-1. Trigger a Pull Request build on [Travis CI](https://travis-ci.org/).
+1. Open a Pull Request in a [Travis](https://travis-ci.org/) or [Circle CI](https://circleci.com/)-enabled repository
 2. Run your standard health checks (tests, linters, type checkers).
-3. Build and publish the app under a unique name on [Expo](https://expo.io/) using the [exp](https://docs.expo.io/versions/v15.0.0/guides/exp-cli.html) cli.
-4. Generate a QR code or the published app URL, and use the GitHub API to post the QR code to Pull Request comments.
-5. Scan the QR code with your Expo app.
+3. Appr builds and publishes your app under a unique, unlisted name on [Expo](https://expo.io/) using the [exp](https://docs.expo.io/versions/v15.0.0/guides/exp-cli.html) cli.
+4. Appr generates a QR code of the published app URL and uses the GitHub API to post the QR code to Pull Request comments.
+5. Open the Expo app on your phone and point it to the QR code - the app will launch in seconds.
 
 ## Limitations
 
-There are a few limitations you should be aware of. **appr** is currently not able to deploy:
+There are a few limitations you should be aware of. Appr is currently not able to deploy:
 
 1. React Native apps started with something other than create-react-native-app or Expo.
 2. Ejected React Native apps containing custom native module dependencies.
 3. Pull Requests from forked repositories. This is due to Travis and Circle security policies (wisely) not exposing secure environment variables to forked builds. (Circle CI allows you to disable this setting, but it is not recommended!)
 
-[Contributions](#contributing) and ideas for solutions welcome.
-
 ## Getting started
 
-To make testing your pull requests easy, head to [FormidableLabs/appr](https://github.com/FormidableLabs/appr) on GitHub and follow the simple [Getting started](https://github.com/FormidableLabs/appr#getting-started) guide to add _appr_ to your project. 
+To make testing your pull requests easy, head to [FormidableLabs/appr](https://github.com/FormidableLabs/appr) on GitHub and follow the simple [Getting started](https://github.com/FormidableLabs/appr#getting-started) guide to add Appr to your project. 
 
-Improvements and additions are welcome. For large changes, please submit a discussion issue. If you need help getting started, or if you just have a question, you can find us on Gitter. You can also ping me on Twitter at [@jevakallio](https://twitter.com/jevakallio).
+If you need help getting started, or if you just have a question, just open an issue on GitHub. You can also ping me on Twitter at [@jevakallio](https://twitter.com/jevakallio).
