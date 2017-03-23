@@ -1,4 +1,4 @@
-# Review apps for Create React Native App and Expo
+# Introducing appr: A New Review Tool for Mobile Developers
 
 ## TL;DR;
 
@@ -28,8 +28,27 @@ Appr is a script that deploys pull requests in your project to Expo, and posts a
 
 The default build environment is [Travis](https://travis-ci.org/), a popular continuous integration service that is free for open source projects, and offers paid plans for private repositories. Switching to your preferred CI should be easy, and PRs to add support are welcome!
 
-To make testing your pull requests easy, head to [FormidableLabs/appr](https://github.com/FormidableLabs/appr) on GitHub and follow the simple [Getting started](https://github.com/FormidableLabs/appr#getting-started) guide to add _appr_ to your project!
+## How it works
 
-## About the author
+The basic mechanism is:
+1. Trigger a Pull Request build on [Travis CI](https://travis-ci.org/).
+2. Run your standard health checks (tests, linters, type checkers).
+3. Build and publish the app under a unique name on [Expo](https://expo.io/) using the [exp](https://docs.expo.io/versions/v15.0.0/guides/exp-cli.html) cli.
+4. Generate a QR code or the published app URL, and use the GitHub API to post the QR code to Pull Request comments.
+5. Scan the QR code with your Expo app.
 
-_Jani builds React Native apps at [Formidable](https://formidable.com), a Seattle/London-based consultancy and open-source shop. You can follow him on Twitter as [@jevakallio](https://twitter.com/jevakallio)._
+## Limitations
+
+There are a few limitations you should be aware of. **appr** is currently not able to deploy:
+
+1. React Native apps started with something other than create-react-native-app or Expo.
+2. Ejected React Native apps containing custom native module dependencies.
+3. Pull Requests from forked repositories. This is due to Travis and Circle security policies (wisely) not exposing secure environment variables to forked builds. (Circle CI allows you to disable this setting, but it is not recommended!)
+
+[Contributions](#contributing) and ideas for solutions welcome.
+
+## Getting started
+
+To make testing your pull requests easy, head to [FormidableLabs/appr](https://github.com/FormidableLabs/appr) on GitHub and follow the simple [Getting started](https://github.com/FormidableLabs/appr#getting-started) guide to add _appr_ to your project. 
+
+Improvements and additions are welcome. For large changes, please submit a discussion issue. If you need help getting started, or if you just have a question, you can find us on Gitter. You can also ping me on Twitter at [@jevakallio](https://twitter.com/jevakallio).
